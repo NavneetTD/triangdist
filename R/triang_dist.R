@@ -25,3 +25,19 @@ ptriang <- function(q, min, max, mode) {
                               1)))
   return(cdf)
 }
+
+
+#Función cuantil de la distribución triangular
+
+qtriang <- function(p, min, max, mode) {
+  if (any(min >= max)) stop("min debe ser menor que max")
+  if (any(mode < min | mode > max)) stop("mode debe estar entre min y max")
+  if (any(p < 0 | p > 1)) stop("p debe estar entre 0 y 1")
+
+  F_c <- (mode - min) / (max - min)
+
+  quant <- ifelse(p < F_c,
+                  min + sqrt(p * (max - min) * (mode - min)),
+                  max - sqrt((1 - p) * (max - min) * (max - mode)))
+  return(quant)
+}
