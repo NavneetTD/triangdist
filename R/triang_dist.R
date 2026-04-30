@@ -1,4 +1,5 @@
 #Función de densidad de la distribución triangular
+#'@importFrom stats runif
 
 dtriang <- function(x, min, max, mode) {
   #Validaciones
