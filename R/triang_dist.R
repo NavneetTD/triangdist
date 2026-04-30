@@ -41,3 +41,9 @@ qtriang <- function(p, min, max, mode) {
                   max - sqrt((1 - p) * (max - min) * (max - mode)))
   return(quant)
 }
+
+#Generación de números aleatorios triangular
+
+rtriang <- function(n, min, max, mode) {
+  qtriang(runif(n), min, max, mode)
+}
