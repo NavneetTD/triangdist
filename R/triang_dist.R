@@ -10,7 +10,7 @@ dtriang <- function(x, min, max, mode) {
   dens <- ifelse(x < min | x > max, 0,
                  ifelse(x <= mode, 2 * (x - min) / ((max - min) * (mode - min)),
                         2 * (max - x) / ((max - min) * (max - mode))))
-  return(dens)
+  dens
 }
 
 
@@ -22,9 +22,10 @@ ptriang <- function(q, min, max, mode) {
 
   cdf <- ifelse(q < min, 0,
                 ifelse(q <= mode, (q - min)^2 / ((max - min) * (mode - min)),
-                       ifelse(q < max, 1 - (max - q)^2 / ((max - min) * (max - mode)),
+                       ifelse(q < max, 1 - (max - q)^2 / ((max - min) *
+                                                            (max - mode)),
                               1)))
-  return(cdf)
+  cdf
 }
 
 
@@ -35,12 +36,12 @@ qtriang <- function(p, min, max, mode) {
   if (any(mode < min | mode > max)) stop("mode debe estar entre min y max")
   if (any(p < 0 | p > 1)) stop("p debe estar entre 0 y 1")
 
-  F_c <- (mode - min) / (max - min)
+  f_c <- (mode - min) / (max - min)
 
-  quant <- ifelse(p < F_c,
+  quant <- ifelse(p < f_c,
                   min + sqrt(p * (max - min) * (mode - min)),
                   max - sqrt((1 - p) * (max - min) * (max - mode)))
-  return(quant)
+  quant
 }
 
 #Generación de números aleatorios triangular
